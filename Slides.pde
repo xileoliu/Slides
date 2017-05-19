@@ -1,4 +1,4 @@
-/** //<>// //<>// //<>//
+/* //<>// //<>// //<>//
  * Sequential
  * by James Patterson.  
  * 
