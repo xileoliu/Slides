@@ -1,4 +1,4 @@
-/**
+/** //<>// //<>// //<>//
  * Sequential
  * by James Patterson.  
  * 
@@ -56,9 +56,13 @@ void draw()
 { 
   background(0);
   frame = (frame) % numFrames;  // Use % to cycle through frames
+
+  /*// Draw previous or next image based on location of current image
   int frameP = frame - 1;
   int frameN = frame + 1;
-  if (imgX > width/2) {
+  // If center of current image > width/2, draw previous image in the background
+  // If center of current image < width/2, draw next image in the background
+  if (imgX > width/2) {    
     if (frameP == -1) {
       frameP = numFrames-1;
     }
@@ -70,23 +74,27 @@ void draw()
     }
     tint (255, 255);
     image(images[frameN], width/2, height/2, 713, 800);
-  }
-  //tint (255, 127);
+  }*/
+
   if (locked) {
     targetX = mouseX - offsetX;
     dx = targetX - imgX;
     imgX += dx * easing;
-    tint (255, 127);
+    if (mouseX > width*9/10 || mouseX < width/10) {
+      tint (255, 192);
+    } else {
+      tint (255, 255);
+    }
     image(images[frame], imgX, height/2, 713, 800);
   } else if (!next && !prev) {
-    //next = false; //<>//
+    //next = false;
     //prev = false;
-    targetX = width/2; //<>//
+    targetX = width/2;
     dx = targetX - imgX;
     imgX += dx * easing;
     tint (255, 255);
     image(images[frame], imgX, height/2, 713, 800);
-  } else { //<>//
+  } else {
     imgX = width/2;
   }
 
@@ -118,6 +126,8 @@ void mousePressed() {
   //}
   locked = true;
   offsetX = mouseX - imgX;
+  next = false;
+  prev = false;
   //targetX = mouseX - offsetX;
   //if (mouseX>width*9/10) {
   //  nextImage();
